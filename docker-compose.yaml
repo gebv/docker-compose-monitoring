@@ -88,7 +88,7 @@ services:
     restart: unless-stopped
     # TODO: configure via env file
     environment:
-      - DATA_SOURCE_NAME=postgresql://postgres:password@postgres:5432/postgres?sslmode=disable
+      - DATA_SOURCE_NAME=postgresql://postgres:postgres123@postgres:5432/postgres?sslmode=disable
 
   mongo_exporter:
     image: percona/mongodb_exporter:0.35.0
@@ -123,6 +123,13 @@ services:
       - BADGER_DIRECTORY_KEY=/badger/key
       - BADGER_DIRECTORY_VALUE=/badger/data
       - BADGER_SPAN_STORE_TTL=168h0m0s
+
+  rabbitmq_exporter:
+    image: kbudde/rabbitmq-exporter:v1.0.0-RC19
+    container_name: rabbitmq_exporter
+    hostname: rabbitmq_exporter
+    environment:
+      RABBIT_URL: "http://rabbitmq:15672"
 
 
 volumes:
