@@ -1,0 +1,9 @@
+[submodule "percona-grafana-dashboards"]
+	path = percona-grafana-dashboards
+	url = https://github.com/percona/grafana-dashboards
+[submodule "rabbitmq-server"]
+	path = rabbitmq-server
+	url = https://github.com/rabbitmq/rabbitmq-server
+[submodule "redis-exporter"]
+	path = redis-exporter
+	url = https://github.com/oliver006/redis_exporter
