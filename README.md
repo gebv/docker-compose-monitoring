@@ -10,7 +10,5 @@ TODO
 Quick Start
 
 ```bash
-# git submodule status
-docker network create monitoring-network
-docker compose up -d
+make run
 ```
