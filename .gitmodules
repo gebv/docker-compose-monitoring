@@ -7,3 +7,6 @@
 [submodule "redis-exporter"]
 	path = redis-exporter
 	url = https://github.com/oliver006/redis_exporter
+[submodule "grafana-jsonnet-libs"]
+	path = grafana-jsonnet-libs
+	url = https://github.com/grafana/jsonnet-libs

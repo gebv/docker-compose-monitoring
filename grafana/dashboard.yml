@@ -10,44 +10,4 @@ providers:
     editable: true
     updateIntervalSeconds: 10
     options:
-      path: /dashboards/default
-  - name: 'redis'
-    orgId: 1
-    folder: ''
-    folderUid: ''
-    type: file
-    disableDeletion: true
-    editable: true
-    updateIntervalSeconds: 10
-    options:
-      path: /dashboards/redis
-  - name: 'mongodb'
-    orgId: 1
-    folder: ''
-    folderUid: ''
-    type: file
-    disableDeletion: true
-    editable: true
-    updateIntervalSeconds: 10
-    options:
-      path: /dashboards/mongodb
-  - name: 'rabbitmq'
-    orgId: 1
-    folder: ''
-    folderUid: ''
-    type: file
-    disableDeletion: true
-    editable: true
-    updateIntervalSeconds: 10
-    options:
-      path: /dashboards/rabbitmq
-  - name: 'postgres'
-    orgId: 1
-    folder: ''
-    folderUid: ''
-    type: file
-    disableDeletion: true
-    editable: true
-    updateIntervalSeconds: 10
-    options:
-      path: /dashboards/postgres
+      path: /dashboards

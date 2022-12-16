@@ -31,11 +31,9 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
-      - ./grafana/dashboards/default:/dashboards/default
-      - ./rabbitmq-server/deps/rabbitmq_prometheus/docker/grafana/dashboards:/dashboards/rabbitmq
-      - ./percona-grafana-dashboards/dashboards/PostgreSQL:/dashboards/postgres
-      - ./percona-grafana-dashboards/dashboards/MongoDB:/dashboards/mongodb
-      - ./redis-exporter/contrib/grafana_prometheus_redis_dashboard.json:/dashboards/redis/dashboard.yaml
+      - ./grafana/dashboards:/dashboards
+      # TODO minio
+      # TODO nginx
     env_file:
       - ./grafana/config.env
     user: "104"
@@ -88,7 +86,7 @@ services:
     restart: unless-stopped
     # TODO: configure via env file
     environment:
-      - DATA_SOURCE_NAME=postgresql://postgres:postgres123@postgres:5432/postgres?sslmode=disable
+      - DATA_SOURCE_NAME=${POSTGRES_URI}
 
   mongo_exporter:
     image: percona/mongodb_exporter:0.35.0
@@ -96,7 +94,13 @@ services:
     restart: unless-stopped
     # TODO: configure via env file
     command:
-      - '--mongodb.uri=mongodb://mongodb-router:27017'
+      - '--mongodb.uri=${MONGODB_URI}'
+      - '--log.level=info'
+      - '--mongodb.collstats-colls=foobar'
+      - '--discovering-mode'
+      - '--mongodb.direct-connect'
+      - '--collect-all'
+      - '--compatible-mode'
 
   redis_exporter:
     image: oliver006/redis_exporter:v1.45.0
@@ -104,7 +108,7 @@ services:
     restart: unless-stopped
     # TODO: configure via env file
     environment:
-      - REDIS_ADDR=redis://redis:6379
+      - REDIS_ADDR=${REDIS_URI}
 
   jaeger:
     container_name: jaeger
@@ -125,11 +129,11 @@ services:
       - BADGER_SPAN_STORE_TTL=168h0m0s
 
   rabbitmq_exporter:
-    image: kbudde/rabbitmq-exporter:v1.0.0-RC19
+    image: kbudde/rabbitmq-exporter:1.0.0-RC19
     container_name: rabbitmq_exporter
     hostname: rabbitmq_exporter
     environment:
-      RABBIT_URL: "http://rabbitmq:15672"
+      - RABBIT_URL=${RABBIT_URI}
 
 
 volumes:
