@@ -27,9 +27,9 @@ cp ./config.env.example ./config.env
 # 2
 # create special user for mongodb
 # # mongo v5*
-# docker-compose exec -T mongo mongosh --authenticationDatabase admin --eval='db.getSiblingDB("admin").createUser({user: "mongodb_exporter",pwd: "mongodb_exporter123",roles: [{ role: "clusterMonitor", db: "admin" },{ role: "read", db: "local" }]})'
+# docker-compose exec -T mongo mongosh --authenticationDatabase admin --eval='db.getSiblingDB("admin").createUser({user: "mongodb_exporter",pwd: "mongodb_exporter123",roles: [{ role: "clusterMonitor", db: "admin" },{ role: "read", db: "<InterestedDatabase>" }]})'
 # # mongo v4*
-# docker-compose exec -T mongo mongo -u mongo -p mongo123 admin --eval='db.getSiblingDB("admin").createUser({user: "mongodb_exporter2",pwd: "mongodb_exporter123",roles: [{ role: "clusterMonitor", db: "admin" },{ role: "read", db: "foobar" }]})'
+# docker-compose exec -T mongo mongo -u mongo -p mongo123 admin --eval='db.getSiblingDB("admin").createUser({user: "mongodb_exporter2",pwd: "mongodb_exporter123",roles: [{ role: "clusterMonitor", db: "admin" },{ role: "read", db: "<InterestedDatabase>" }]})'
 
 # 3
 # configure the other fields in to ./config.env

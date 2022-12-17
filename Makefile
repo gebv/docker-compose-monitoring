@@ -14,6 +14,7 @@ build:
 
 	curl -o ./grafana/dashboards/cadvisor.json https://grafana.com/api/dashboards/14282/revisions/1/download
 	curl -o ./grafana/dashboards/node_exporter.json https://grafana.com/api/dashboards/1860/revisions/29/download
+	curl -o ./grafana/dashboards/minio.json https://grafana.com/api/dashboards/13502/revisions/19/download
 
 destroy:
 	docker compose --env-file ./config.env down
